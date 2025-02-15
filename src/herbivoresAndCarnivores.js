@@ -3,20 +3,20 @@
 class Animal {
   // write your code here
 
-  alive = [];
+  static alive = [];
 
-  constructor(name) {
+  constructor(name, health = 100) {
     this.name = name;
-    this.health = 100;
+    this.health = health;
   }
 }
 
 class Herbivore extends Animal {
   // write your code here
-  constructor(name) {
-    super(name);
+  constructor(name, health = 100) {
+    super(name, health);
     this.hidden = false;
-    this.alive.push(this);
+    Animal.alive.push(this);
   }
 
   hide() {
@@ -26,9 +26,9 @@ class Herbivore extends Animal {
 
 class Carnivore extends Animal {
   // write your code here
-  constructor(name) {
-    super(name);
-    this.alive.push(this);
+  constructor(name, health = 100) {
+    super(name, health);
+    Animal.alive.push(this);
   }
 
   bite(animal) {
@@ -37,7 +37,7 @@ class Carnivore extends Animal {
     }
 
     if (animal.health <= 0) {
-      this.alive.splice(this.alive.indexOf(animal), 1);
+      Animal.alive.splice(Animal.alive.indexOf(animal), 1);
     }
   }
 }
